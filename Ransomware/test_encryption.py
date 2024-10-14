@@ -1,12 +1,7 @@
 import unittest
-import os
-import sys
 import secrets
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.backends import default_backend
-
-# Añade la ruta a src/utils
-sys.path.insert(0, os.path.abspath('../src/utils'))
 
 from encryption_utils import encrypt_aes_key
 
